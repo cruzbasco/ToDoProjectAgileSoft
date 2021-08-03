@@ -1,0 +1,12 @@
+C:\Users\cruzb\source\repos\ToDoProject\ToDoDataAccess\obj\Debug\net5.0\ToDoDataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cruzb\source\repos\ToDoProject\ToDoDataAccess\obj\Debug\net5.0\ToDoDataAccess.AssemblyInfoInputs.cache
+C:\Users\cruzb\source\repos\ToDoProject\ToDoDataAccess\obj\Debug\net5.0\ToDoDataAccess.AssemblyInfo.cs
+C:\Users\cruzb\source\repos\ToDoProject\ToDoDataAccess\obj\Debug\net5.0\ToDoDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\cruzb\source\repos\ToDoProject\ToDoDataAccess\bin\Debug\net5.0\ToDoDataAccess.deps.json
+C:\Users\cruzb\source\repos\ToDoProject\ToDoDataAccess\bin\Debug\net5.0\ToDoDataAccess.dll
+C:\Users\cruzb\source\repos\ToDoProject\ToDoDataAccess\bin\Debug\net5.0\ref\ToDoDataAccess.dll
+C:\Users\cruzb\source\repos\ToDoProject\ToDoDataAccess\bin\Debug\net5.0\ToDoDataAccess.pdb
+C:\Users\cruzb\source\repos\ToDoProject\ToDoDataAccess\obj\Debug\net5.0\ToDoDataAccess.dll
+C:\Users\cruzb\source\repos\ToDoProject\ToDoDataAccess\obj\Debug\net5.0\ref\ToDoDataAccess.dll
+C:\Users\cruzb\source\repos\ToDoProject\ToDoDataAccess\obj\Debug\net5.0\ToDoDataAccess.pdb
+C:\Users\cruzb\source\repos\ToDoProject\ToDoDataAccess\obj\Debug\net5.0\ToDoDataAccess.csproj.AssemblyReference.cache

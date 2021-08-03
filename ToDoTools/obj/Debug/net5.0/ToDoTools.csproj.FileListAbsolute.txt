@@ -1,0 +1,12 @@
+C:\Users\cruzb\source\repos\ToDoProject\ToDoTools\bin\Debug\net5.0\ToDoTools.deps.json
+C:\Users\cruzb\source\repos\ToDoProject\ToDoTools\bin\Debug\net5.0\ToDoTools.dll
+C:\Users\cruzb\source\repos\ToDoProject\ToDoTools\bin\Debug\net5.0\ref\ToDoTools.dll
+C:\Users\cruzb\source\repos\ToDoProject\ToDoTools\bin\Debug\net5.0\ToDoTools.pdb
+C:\Users\cruzb\source\repos\ToDoProject\ToDoTools\obj\Debug\net5.0\ToDoTools.csproj.AssemblyReference.cache
+C:\Users\cruzb\source\repos\ToDoProject\ToDoTools\obj\Debug\net5.0\ToDoTools.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cruzb\source\repos\ToDoProject\ToDoTools\obj\Debug\net5.0\ToDoTools.AssemblyInfoInputs.cache
+C:\Users\cruzb\source\repos\ToDoProject\ToDoTools\obj\Debug\net5.0\ToDoTools.AssemblyInfo.cs
+C:\Users\cruzb\source\repos\ToDoProject\ToDoTools\obj\Debug\net5.0\ToDoTools.csproj.CoreCompileInputs.cache
+C:\Users\cruzb\source\repos\ToDoProject\ToDoTools\obj\Debug\net5.0\ToDoTools.dll
+C:\Users\cruzb\source\repos\ToDoProject\ToDoTools\obj\Debug\net5.0\ref\ToDoTools.dll
+C:\Users\cruzb\source\repos\ToDoProject\ToDoTools\obj\Debug\net5.0\ToDoTools.pdb
