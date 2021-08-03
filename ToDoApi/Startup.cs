@@ -41,6 +41,7 @@ namespace ToDoApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ToDoApi", Version = "v1" });
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); //This line
             });
         }
 
@@ -51,7 +52,11 @@ namespace ToDoApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDoApi v1"));
+                app.UseSwaggerUI(c => 
+                //c.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDoApi v1")
+                    c.SwaggerEndpoint("./v1/swagger.json", "ToDoApi v1") //originally "./swagger/v1/swagger.json"
+
+                );
             }
 
             app.UseHttpsRedirection();

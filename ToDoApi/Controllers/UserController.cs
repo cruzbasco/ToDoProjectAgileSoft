@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Security.Cryptography;
+using System.Text;
 using ToDoDataAccess.Models;
 using ToDoDataAccess.Repositories;
 using ToDoTools;
@@ -35,8 +38,7 @@ namespace ToDoApi.Controllers
         [HttpPost]
         public IActionResult AddUser([FromBody] User user)
         {
-            if (user == null)
-                return BadRequest();
+            if (user == null) return BadRequest();
 
              //check fields
             if (Validation.CanNotBeEmpty(user.Username))
@@ -56,16 +58,20 @@ namespace ToDoApi.Controllers
 
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
+
+            user.Password = Encrypt.EncryptPassword(user.Password);
+
             var createdUser = _repository.AddUser(user);
 
             return Ok(createdUser);
         }
 
+        
+
         [HttpPut]
         public IActionResult UpdateUser([FromBody] User user)
         {
-            if (user == null)
-                return BadRequest();
+            if (user == null) return BadRequest();
 
             //check fields
             if (Validation.CanNotBeEmpty(user.Username))

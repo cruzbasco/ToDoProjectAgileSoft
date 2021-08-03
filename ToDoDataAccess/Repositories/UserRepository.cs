@@ -12,6 +12,7 @@ namespace ToDoDataAccess.Repositories
     {
         IEnumerable<User> GetAllUsers();
         User GetUserById(int userId);
+        User GetUserByUsernameAndPassword(string username, string password);
         User AddUser(User user);
         User UpdateUser(User updatedUser);
         void DeleteUserById(int userId);
@@ -33,6 +34,12 @@ namespace ToDoDataAccess.Repositories
         {
             return _context.Users.FirstOrDefault(user => user.Id == userId);
         }
+
+        public User GetUserByUsernameAndPassword(string username, string password)
+        {
+            return _context.Users.FirstOrDefault(user => user.Username == username && user.Password == password);
+        }
+
 
         public User AddUser(User user)
         {

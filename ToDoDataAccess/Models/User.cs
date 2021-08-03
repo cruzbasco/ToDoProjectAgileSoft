@@ -15,7 +15,7 @@ namespace ToDoDataAccess.Models
         [MaxLength(20)]
         public string Username { get; set; }
         [Required]
-        [MaxLength(20)]
+        [MaxLength(100)]
         public string Password { get; set; }
         [Required]
         [MaxLength(50)]
