@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,17 @@ namespace ToDoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://dev-xjah7j9e.us.auth0.com/";
+                options.Audience = "https://todo/api";
+            });
+
             services.AddDbContext<ToDoContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
@@ -52,8 +64,8 @@ namespace ToDoApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => 
-                //c.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDoApi v1")
+                app.UseSwaggerUI(c =>
+                    //c.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDoApi v1")
                     c.SwaggerEndpoint("./v1/swagger.json", "ToDoApi v1") //originally "./swagger/v1/swagger.json"
 
                 );
@@ -64,6 +76,8 @@ namespace ToDoApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
