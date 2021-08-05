@@ -83,7 +83,7 @@ namespace ToDoApi.Controllers
 
             _repository.UpdateUser(user);
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -98,7 +98,7 @@ namespace ToDoApi.Controllers
 
             _repository.DeleteUserById(id);
 
-            return NoContent();
+            return Ok();
         }
 
         private void ValidateUserModel(User user)

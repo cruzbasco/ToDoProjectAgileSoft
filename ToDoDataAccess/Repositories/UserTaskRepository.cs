@@ -14,7 +14,7 @@ namespace ToDoDataAccess.Repositories
         IEnumerable<UserTask> GetAllUserTaskByUserId(int userId);
         UserTask GetUserTaskByTaskId(int taskId);
         UserTask AddUserTask(UserTask task);
-        UserTask UpdateUserTaskById(UserTask userTask);
+        UserTask UpdateUserTaskStateById(UserTask userTask);
         void DeleteUserTaskByTaskId(int taskId);
 
     }
@@ -43,15 +43,13 @@ namespace ToDoDataAccess.Repositories
             _context.SaveChanges();
             return userTask.Entity;
         }
-        public UserTask UpdateUserTaskById(UserTask userTask)
+        public UserTask UpdateUserTaskStateById(UserTask userTask)
         {
             var foundUserTask = _context.UserTasks.FirstOrDefault(task => task.Id == userTask.Id);
 
             if (foundUserTask != null)
             {
-                foundUserTask.Name = userTask.Name;
                 foundUserTask.TaskState = userTask.TaskState;
-                foundUserTask.Description = userTask.Description;
                 foundUserTask.UpdatedDate = DateTime.Now;
             }
 

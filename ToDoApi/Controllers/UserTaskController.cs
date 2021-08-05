@@ -69,9 +69,9 @@ namespace ToDoApi.Controllers
 
             if (CheckUserId(taskToUpdate.UserRefId)) return Unauthorized();
 
-            _repository.UpdateUserTaskById(task);
+            _repository.UpdateUserTaskStateById(task);
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -88,7 +88,7 @@ namespace ToDoApi.Controllers
 
             _repository.DeleteUserTaskByTaskId(id);
 
-            return NoContent();
+            return Ok();
         }
 
         private bool CheckUserId(int userRefId)
