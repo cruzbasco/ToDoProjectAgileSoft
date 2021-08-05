@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Claims;
 using ToDoDataAccess.Models;
 using ToDoDataAccess.Repositories;
 
@@ -22,16 +22,34 @@ namespace ToDoApi.Controllers
             _repository = repository;
         }
 
-        [HttpGet("{userId}")]
-        public IActionResult GetAllUserTasksByUserId(int userId)
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult GetAllUserTasks()
         {
-            return Ok(_repository.GetAllUserTaskByUserId(userId));
+            int userId = GetUserId();
+
+            if (userId == 0) return BadRequest();
+
+            return Ok(_repository.GetAllUserTaskByUserId(userId).Select( dto => new UserTaskDTO { 
+                Id = dto.Id,
+                Name = dto.Name,
+                TaskState = dto.TaskState,
+                Description = dto.Description,
+            }));
         }
 
+        
+
         [HttpPost]
+        [Authorize]
         public IActionResult AddUserTask([FromBody] UserTask task)
         {
             if (task == null) return BadRequest();
+
+            int userId = GetUserId();
+
+            task.UserRefId = userId;
 
             var createdUser = _repository.AddUserTask(task);
 
@@ -39,13 +57,17 @@ namespace ToDoApi.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public IActionResult UpdateUserTask([FromBody] UserTask task)
         {
             if (task == null) return BadRequest();
 
-            var userToUpdate = _repository.GetUserTaskByTaskId(task.Id);
 
-            if (userToUpdate == null) return NotFound();
+            var taskToUpdate = _repository.GetUserTaskByTaskId(task.Id);
+
+            if (taskToUpdate == null) return NotFound();
+
+            if (CheckUserId(taskToUpdate.UserRefId)) return Unauthorized();
 
             _repository.UpdateUserTaskById(task);
 
@@ -53,18 +75,34 @@ namespace ToDoApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult DeleteUserTask(int id)
         {
             if (id == 0) return BadRequest();
 
-            var userToDelete = _repository.GetUserTaskByTaskId(id);
+            var taskToUpdate = _repository.GetUserTaskByTaskId(id);
 
-            if (userToDelete == null) return NotFound();
+            if (taskToUpdate == null) return NotFound();
+
+            if (CheckUserId(taskToUpdate.UserRefId)) return Unauthorized();
 
             _repository.DeleteUserTaskByTaskId(id);
 
             return NoContent();
         }
 
+        private bool CheckUserId(int userRefId)
+        {
+            int userId = GetUserId();
+
+            return userRefId != userId;
+        }
+
+        private int GetUserId()
+        {
+            string id = User.FindFirst(ClaimTypes.Sid)?.Value ?? "0";
+
+            return int.Parse(id);
+        }
     }
 }
